@@ -15,9 +15,14 @@ const localPath = processArgs[3];
 
 
 request(url, (error, response, body) => {
-  if (error !== null) {
-
+  if (!error && response.statusCode === 200) {
+    fs.writeFile(localPath, body, (err) => {
+      if (err) throw err;
+      console.log("Data has been written to the file successfully!");
+      console.log(`Downloaded and saved ${body.length} bytes to ${localPath}`)
+    })
   } else {
+    console.log(`See response for details: ${response} ${response.statusCode}`);
     console.log(`An error has occured: ${error}`);
   }
 }) 
