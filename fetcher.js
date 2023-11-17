@@ -6,15 +6,18 @@
  * After the http request is complete, take the data and write it to the file
  * Try using a promise function?
 */
+const request = require('request');
+const fs = require('fs');
 
 const processArgs = process.argv;
 const url = processArgs[2];
 const localPath = processArgs[3];
 
-const request = require('request');
 
 request(url, (error, response, body) => {
-  console.log('error: ', error);
-  console.log('response:', response);
-  console.log('body: ', body);
+  if (error !== null) {
+
+  } else {
+    console.log(`An error has occured: ${error}`);
+  }
 }) 
